@@ -118,19 +118,20 @@ export function Footer() {
                 ))}
               </ul>
             </div>
-
-            {/* Newsletter Signup */}
             <div>
-              <h3 className="font-serif font-semibold text-foreground mb-4">Stay Updated</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Get the latest updates about speakers, schedule, and exclusive content.
-              </p>
-              <div className="space-y-3">
-                <Input type="email" placeholder="Enter your email" className="w-full" />
-                <Button className="w-full" size="sm">
-                  Subscribe
-                </Button>
-              </div>
+              <h3 className="font-serif font-semibold text-foreground mb-4">Resources</h3>
+              <ul className="space-y-3">
+                {footerLinks.resources.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

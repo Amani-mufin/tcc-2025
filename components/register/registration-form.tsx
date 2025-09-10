@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useSearchParams, useRouter } from "next/navigation"
 import { Card } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
@@ -10,10 +11,10 @@ import { RegistrationTypeStep } from "./steps/registration-type-step"
 import { PersonalInfoStep } from "./steps/personal-info-step"
 import { ProfessionalDetailsStep } from "./steps/professional-details-step"
 import { PreferencesStep } from "./steps/preferences-step"
-import { PaymentStep } from "./steps/payment-step"
+import { ConfirmationStep } from "./steps/confirmation-step"
 
 export interface RegistrationData {
-  type: "attendee" | "volunteer" | "speaker" | ""
+  type: "attendee" | "speaker" | "sponsor" | ""
   // Personal Info
   firstName: string
   lastName: string
@@ -31,21 +32,20 @@ export interface RegistrationData {
   dietaryRestrictions: string
   accessibility: string
   tshirtSize: string
-  // Payment
-  paymentMethod: string
-  promoCode: string
 }
 
 const steps = [
-  { id: 1, title: "Registration Type", description: "Choose how you want to participate" },
-  { id: 2, title: "Personal Information", description: "Tell us about yourself" },
-  { id: 3, title: "Professional Details", description: "Your work and experience" },
+  { id: 1, title: "Type", description: "Choose how you want to participate" },
+  { id: 2, title: "Personal", description: "Tell us about yourself" },
+  { id: 3, title: "Professional", description: "Your work and experience" },
   { id: 4, title: "Preferences", description: "Customize your experience" },
-  { id: 5, title: "Payment", description: "Complete your registration" },
+  { id: 5, title: "Confirm", description: "Finish and confirm" },
 ]
 
 export function RegistrationForm() {
   const [currentStep, setCurrentStep] = useState(1)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
   const [formData, setFormData] = useState<RegistrationData>({
     type: "",
     firstName: "",
@@ -62,9 +62,17 @@ export function RegistrationForm() {
     dietaryRestrictions: "",
     accessibility: "",
     tshirtSize: "",
-    paymentMethod: "",
-    promoCode: "",
   })
+
+  const searchParams = useSearchParams()
+  const router = useRouter()
+
+  useEffect(() => {
+    const typeParam = searchParams.get("type") as RegistrationData["type"]
+    if (typeParam && ["attendee", "speaker", "sponsor"].includes(typeParam)) {
+      setFormData((prev) => ({ ...prev, type: typeParam }))
+    }
+  }, [searchParams])
 
   const updateFormData = (data: Partial<RegistrationData>) => {
     setFormData((prev) => ({ ...prev, ...data }))
@@ -82,7 +90,20 @@ export function RegistrationForm() {
     }
   }
 
-  const progress = (currentStep / steps.length) * 100
+  const handleSubmit = async () => {
+    setIsSubmitting(true)
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    console.log("Form submitted:", formData)
+    setIsSubmitting(false)
+    setShowSuccess(true)
+    // Redirect after a short delay
+    setTimeout(() => {
+      router.push("/")
+    }, 3000)
+  }
+
+  const progress = ((currentStep - 1) / (steps.length - 1)) * 100
 
   const renderStep = () => {
     switch (currentStep) {
@@ -91,13 +112,11 @@ export function RegistrationForm() {
       case 2:
         return <PersonalInfoStep data={formData} updateData={updateFormData} onNext={nextStep} onPrev={prevStep} />
       case 3:
-        return (
-          <ProfessionalDetailsStep data={formData} updateData={updateFormData} onNext={nextStep} onPrev={prevStep} />
-        )
+        return <ProfessionalDetailsStep data={formData} updateData={updateFormData} onNext={nextStep} onPrev={prevStep} />
       case 4:
         return <PreferencesStep data={formData} updateData={updateFormData} onNext={nextStep} onPrev={prevStep} />
       case 5:
-        return <PaymentStep data={formData} updateData={updateFormData} onPrev={prevStep} />
+        return <ConfirmationStep data={formData} onPrev={prevStep} onSubmit={handleSubmit} isSubmitting={isSubmitting}/>
       default:
         return null
     }
@@ -107,61 +126,77 @@ export function RegistrationForm() {
     <section className="py-16 lg:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         {/* Progress Header */}
-        <Card className="p-6 lg:p-8 mb-8">
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-serif font-bold text-foreground">Registration Progress</h2>
-              <Badge variant="outline">
-                Step {currentStep} of {steps.length}
-              </Badge>
-            </div>
-            <Progress value={progress} className="h-2 mb-4" />
-          </div>
-
-          {/* Step Indicators */}
-          <div className="flex items-center justify-between">
-            {steps.map((step, index) => (
-              <div key={step.id} className="flex items-center">
-                <div className="flex flex-col items-center">
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors duration-200 ${
-                      currentStep > step.id
-                        ? "bg-primary text-primary-foreground"
-                        : currentStep === step.id
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted text-muted-foreground"
-                    }`}
-                  >
-                    {currentStep > step.id ? <CheckCircle className="w-4 h-4" /> : step.id}
-                  </div>
-                  <div className="mt-2 text-center">
-                    <div className="text-xs font-medium text-foreground hidden sm:block">{step.title}</div>
-                    <div className="text-xs text-muted-foreground hidden lg:block">{step.description}</div>
-                  </div>
-                </div>
-                {index < steps.length - 1 && (
-                  <div
-                    className={`w-8 lg:w-16 h-0.5 mx-2 transition-colors duration-200 ${
-                      currentStep > step.id ? "bg-primary" : "bg-muted"
-                    }`}
-                  />
-                )}
+        {!showSuccess && (
+          <Card className="p-6 lg:p-8 mb-8 animate-fade-in">
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-serif font-bold text-foreground">Registration Progress</h2>
+                <Badge variant="outline">
+                  Step {currentStep} of {steps.length}
+                </Badge>
               </div>
-            ))}
-          </div>
-        </Card>
+              <Progress value={progress} className="h-2 mb-4" />
+            </div>
+
+            <div className="flex justify-between items-center relative">
+              {steps.map((step, index) => (
+                <div key={step.id} className="flex-1 flex flex-col items-center relative">
+                  <div
+                    className={`w-10 h-10 rounded-full flex items-center justify-center font-medium transition-colors duration-300
+                      ${currentStep >= step.id ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}
+                  >
+                    {currentStep > step.id ? <CheckCircle className="w-5 h-5" /> : step.id}
+                  </div>
+                  <p className="mt-2 text-xs font-medium text-center text-muted-foreground">{step.title}</p>
+                  {index < steps.length - 1 && (
+                    <div
+                      className={`absolute top-5 left-1/2 w-full h-0.5 -z-10 transition-colors duration-300
+                      ${currentStep > step.id ? "bg-primary" : "bg-muted"}`}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </Card>
+        )}
 
         {/* Form Content */}
         <AnimatePresence mode="wait">
           <motion.div
             key={currentStep}
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
+            exit={{ opacity: 0, x: -30 }}
             transition={{ duration: 0.3 }}
           >
             {renderStep()}
           </motion.div>
+        </AnimatePresence>
+
+        {/* Success Popup */}
+        <AnimatePresence>
+          {showSuccess && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.4 }}
+              className="text-center"
+            >
+              <Card className="p-8 lg:p-12">
+                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle className="w-12 h-12 text-green-600" />
+                  </div>
+                  <h2 className="text-3xl font-serif font-bold text-foreground mb-4">Registration Complete!</h2>
+                  <p className="text-muted-foreground text-lg mb-6">
+                    Thank you for joining Calabar Tech Conference 2025. You’ll be redirected to the homepage shortly.
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Confirmation ID: <span className="font-mono bg-muted px-2 py-1 rounded">CTC2025-{formData.lastName.toUpperCase()}{Math.floor(100 + Math.random() * 900)}</span>
+                  </p>
+              </Card>
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
     </section>

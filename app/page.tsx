@@ -3,9 +3,8 @@ import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/home/hero-section"
 import { StatsSection } from "@/components/home/stats-section"
 import { AboutPreview } from "@/components/home/about-preview"
-import { CountdownTimer } from "@/components/home/countdown-timer"
 import { SponsorsCarousel } from "@/components/home/sponsors-carousel"
-import { FinalCTA } from "@/components/home/final-cta"
+import { RegistrationCards } from "@/components/register/registration-cards"
 
 export default function HomePage() {
   return (
@@ -15,9 +14,8 @@ export default function HomePage() {
         <HeroSection />
         <StatsSection />
         <AboutPreview />
-        <CountdownTimer />
         <SponsorsCarousel />
-        <FinalCTA />
+        <RegistrationCards />
       </main>
       <Footer />
     </div>

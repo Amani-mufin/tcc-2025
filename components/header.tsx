@@ -13,10 +13,6 @@ const navigation = [
   { name: "About", href: "/about" },
   { name: "Speakers", href: "/speakers" },
   { name: "Schedule", href: "/schedule" },
-  { name: "Sponsors", href: "/sponsors" },
-  { name: "Attendees", href: "/attendees" },
-  { name: "Team", href: "/team" },
-  { name: "FAQ", href: "/faq" },
 ]
 
 export function Header() {
@@ -50,7 +46,7 @@ export function Header() {
                 <span className="text-primary-foreground font-bold text-sm">CT</span>
               </div>
               <div className="hidden sm:block">
-                <span className="font-serif font-bold text-lg text-foreground">Calabar Tech 2025</span>
+                <span className="font-serif font-bold text-lg text-foreground">TCC 2025</span>
               </div>
             </Link>
           </motion.div>
