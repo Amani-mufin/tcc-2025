@@ -16,18 +16,24 @@ import { Button } from "@/components/ui/button"
 const sponsors = [
   { name: "TechCorp Global", logo: "/tech-company-logo-platinum.jpg", tier: "Platinum" },
   { name: "Innovation Labs", logo: "/innovation-labs-logo-platinum.jpg", tier: "Platinum" },
+  { name: "Platinum Sponsor", logo: "/placeholder.svg?height=40&width=120", tier: "Platinum" },
   { name: "StartupHub Africa", logo: "/startup-hub-logo-gold.jpg", tier: "Gold" },
   { name: "Digital Solutions Inc", logo: "/digital-solutions-logo-gold.jpg", tier: "Gold" },
   { name: "CloudTech Systems", logo: "/cloud-tech-logo-gold.jpg", tier: "Gold" },
+  { name: "Gold Sponsor", logo: "/placeholder.svg?height=40&width=120", tier: "Gold" },
   { name: "DevTools Pro", logo: "/dev-tools-logo-silver.jpg", tier: "Silver" },
   { name: "AI Innovations", logo: "/ai-innovations-logo-silver.jpg", tier: "Silver" },
   { name: "CyberSec Solutions", logo: "/cybersec-logo-silver.jpg", tier: "Silver" },
   { name: "DataFlow Systems", logo: "/dataflow-logo-silver.jpg", tier: "Silver" },
+  { name: "Silver Sponsor", logo: "/placeholder.svg?height=40&width=120", tier: "Silver" },
   { name: "CodeCraft", logo: "/codecraft-logo-bronze.jpg", tier: "Bronze" },
   { name: "WebDev Studio", logo: "/webdev-studio-logo-bronze.jpg", tier: "Bronze" },
   { name: "MobileTech", logo: "/mobiletech-logo-bronze.jpg", tier: "Bronze" },
   { name: "AppForge", logo: "/appforge-logo-bronze.jpg", tier: "Bronze" },
   { name: "TechStart", logo: "/placeholder.svg?height=40&width=120", tier: "Bronze" },
+  { name: "Bronze Sponsor", logo: "/placeholder.svg?height=40&width=120", tier: "Bronze" },
+  { name: "Startup Supporter", logo: "/placeholder.svg?height=40&width=120", tier: "Startup Supporter" },
+  { name: "Speaker sponsor", logo: "/placeholder.svg?height=40&width=120", tier: "Speaker sponsor" },
 ]
 
 export function SponsorsCarousel() {
