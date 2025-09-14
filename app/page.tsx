@@ -9,6 +9,8 @@ import { RegistrationCards } from "@/components/register/registration-cards"
 import { TeamPreview } from "@/components/home/team-preview"
 import { ScheduleSection } from '@/components/home/schedule-section';
 import { VenueSection } from '@/components/home/venue-section';
+import { WhyCalabar } from "@/components/about/why-calabar";
+import { WhyAttend } from "@/components/about/why-attend";
 
 export default function HomePage() {
   return (
@@ -18,6 +20,8 @@ export default function HomePage() {
         <HeroSection />
         <StatsSection />
         <AboutPreview />
+        <WhyCalabar />
+        <WhyAttend />
         <SpeakersPreview />
         <SponsorsCarousel />
         <RegistrationCards />
