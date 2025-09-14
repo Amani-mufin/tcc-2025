@@ -1,25 +1,31 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { TeamHero } from "@/components/team/team-hero"
-import { OrganizingCommittee } from "@/components/team/organizing-committee"
-import { AdvisoryBoard } from "@/components/team/advisory-board"
-import { JoinTeamCTA } from "@/components/team/join-team-cta"
-
-export const metadata = {
-  title: "Team | Calabar Tech Conference 2025",
-  description:
-    "Meet the dedicated team behind Calabar Tech Conference 2025. Our organizing committee and advisory board are committed to creating an exceptional experience.",
-}
+import { TeamMemberCard } from "@/components/team/team-member-card"
+import { teamMembers } from "@/lib/team-data"
 
 export default function TeamPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-16 lg:pt-20">
-        <TeamHero />
-        <OrganizingCommittee />
-        <AdvisoryBoard />
-        <JoinTeamCTA />
+      <main>
+        <section className="py-16 lg:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-serif font-bold text-foreground mb-4">
+                Our Team
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                Meet the dedicated individuals who are working to make the Calabar Tech Conference a success.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {teamMembers.map((member) => (
+                <TeamMemberCard key={member.id} member={member} />
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

@@ -5,23 +5,12 @@ import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, MapPin, Calendar
 
 const footerLinks = {
   conference: [
-    { name: "About", href: "/about" },
-    { name: "Speakers", href: "/speakers" },
-    { name: "Schedule", href: "/schedule" },
-    { name: "Sponsors", href: "/sponsors" },
+    { name: "About", href: "/#about-section" },
+    { name: "Speakers", href: "/#speakers-section" },
+    { name: "Schedule", href: "/#schedule" },
+    { name: "Sponsors", href: "/#sponsors" },
   ],
-  attendees: [
-    { name: "Registration", href: "/register" },
-    { name: "Attendees", href: "/attendees" },
-    { name: "Volunteer", href: "/register?type=volunteer" },
-    { name: "FAQ", href: "/faq" },
-  ],
-  resources: [
-    { name: "Team", href: "/team" },
-    { name: "Contact", href: "/contact" },
-    { name: "Privacy Policy", href: "/privacy" },
-    { name: "Terms of Service", href: "/terms" },
-  ],
+  resources: [{ name: "Team", href: "/#team-section" }],
 }
 
 const socialLinks = [
@@ -40,14 +29,14 @@ export function Footer() {
         <div className="py-12 lg:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* Brand Section */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-2">
               <Link href="/" className="flex items-center space-x-2 mb-4">
                 <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                   <span className="text-primary-foreground font-bold">CT</span>
                 </div>
                 <span className="font-serif font-bold text-xl text-foreground">Calabar Tech 2025</span>
               </Link>
-              <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
+              <p className="text-muted-foreground mb-6 text-sm leading-relaxed max-w-md">
                 Innovating for Growth: Building the Future of Technology in Cross River & Beyond
               </p>
 
@@ -102,22 +91,7 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Attendees Links */}
-            <div>
-              <h3 className="font-serif font-semibold text-foreground mb-4">Attendees</h3>
-              <ul className="space-y-3">
-                {footerLinks.attendees.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* Resources Links */}
             <div>
               <h3 className="font-serif font-semibold text-foreground mb-4">Resources</h3>
               <ul className="space-y-3">

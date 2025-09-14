@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { Button } from "@/components/ui/button"
 import { Calendar, Users, MapPin, ChevronDown } from "lucide-react"
@@ -13,14 +13,14 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen min-h-[660px] flex items-center justify-center overflow-hidden pt-16 lg:pt-20">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/5">
         <div className="absolute inset-0 bg-[url('/geometric-tech-pattern-circuit-lines.jpg')] opacity-5 bg-cover bg-center" />
 
         {/* Floating geometric elements */}
         <motion.div
-          className="absolute top-20 left-10 w-20 h-20 border-2 border-primary/20 rounded-lg"
+          className="absolute top-20 left-10 w-20 h-20 border-2 border-primary/20 rounded-lg hidden md:block"
           animate={{
             y: [0, -20, 0],
             rotate: [0, 180, 360],
@@ -32,7 +32,7 @@ export function HeroSection() {
           }}
         />
         <motion.div
-          className="absolute top-40 right-20 w-16 h-16 bg-accent/10 rounded-full"
+          className="absolute top-40 right-20 w-16 h-16 bg-accent/10 rounded-full hidden md:block"
           animate={{
             y: [0, 30, 0],
             x: [0, -10, 0],
@@ -44,7 +44,7 @@ export function HeroSection() {
           }}
         />
         <motion.div
-          className="absolute bottom-40 left-1/4 w-12 h-12 border-2 border-accent/30 rotate-45"
+          className="absolute bottom-40 left-1/4 w-12 h-12 border-2 border-accent/30 rotate-45 hidden md:block"
           animate={{
             y: [0, -15, 0],
             rotate: [45, 225, 405],
@@ -72,7 +72,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl sm:text-5xl lg:text-7xl font-serif font-bold text-foreground mb-6 text-balance"
           >
-            Tech Calabar Conference <span className="text-primary">2025</span>
+            Tech Conference Calabar <span className="text-primary">2025</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -80,7 +80,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto text-pretty"
+            className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto text-pretty"
           >
             Innovating for Growth: Building the Future of Technology in Cross River & Beyond
           </motion.p>
@@ -93,16 +93,21 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10 mb-16"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10 mb-12"
           >
-            <Button size="lg" className="text-base px-8 py-6 h-auto" asChild>
-              <Link href="/register">
+            <Button size="lg" className="w-full sm:w-auto text-base px-8 py-6 h-auto" asChild>
+              <Link href="https://luma.com/5t04wsl8?tk=L47on9">
                 <Calendar className="w-5 h-5 mr-2" />
                 Register Now
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="text-base px-8 py-6 h-auto bg-transparent" asChild>
-              <Link href="/register?type=volunteer">
+            <Button
+              variant="outline"
+              size="lg"
+              className="w-full sm:w-auto text-base px-8 py-6 h-auto bg-transparent"
+              asChild
+            >
+              <Link href="https://docs.google.com/forms/d/e/1FAIpQLSf7RI1RuFzoTmN-Imavk_mw9l9xRNPZ5fiJcnZWQjdyrHgPFw/viewform">
                 <Users className="w-5 h-5 mr-2" />
                 Become a Speaker
               </Link>

@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
+import Link from "next/link"
 import {
   Carousel,
   CarouselContent,
@@ -10,22 +11,23 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
 const sponsors = [
-    { name: "TechCorp Global", logo: "/tech-company-logo-platinum.jpg", tier: "Platinum" },
-    { name: "Innovation Labs", logo: "/innovation-labs-logo-platinum.jpg", tier: "Platinum" },
-    { name: "StartupHub Africa", logo: "/startup-hub-logo-gold.jpg", tier: "Gold" },
-    { name: "Digital Solutions Inc", logo: "/digital-solutions-logo-gold.jpg", tier: "Gold" },
-    { name: "CloudTech Systems", logo: "/cloud-tech-logo-gold.jpg", tier: "Gold" },
-    { name: "DevTools Pro", logo: "/dev-tools-logo-silver.jpg", tier: "Silver" },
-    { name: "AI Innovations", logo: "/ai-innovations-logo-silver.jpg", tier: "Silver" },
-    { name: "CyberSec Solutions", logo: "/cybersec-logo-silver.jpg", tier: "Silver" },
-    { name: "DataFlow Systems", logo: "/dataflow-logo-silver.jpg", tier: "Silver" },
-    { name: "CodeCraft", logo: "/codecraft-logo-bronze.jpg", tier: "Bronze" },
-    { name: "WebDev Studio", logo: "/webdev-studio-logo-bronze.jpg", tier: "Bronze" },
-    { name: "MobileTech", logo: "/mobiletech-logo-bronze.jpg", tier: "Bronze" },
-    { name: "AppForge", logo: "/appforge-logo-bronze.jpg", tier: "Bronze" },
-    { name: "TechStart", logo: "/placeholder.svg?height=40&width=120", tier: "Bronze" },
+  { name: "TechCorp Global", logo: "/tech-company-logo-platinum.jpg", tier: "Platinum" },
+  { name: "Innovation Labs", logo: "/innovation-labs-logo-platinum.jpg", tier: "Platinum" },
+  { name: "StartupHub Africa", logo: "/startup-hub-logo-gold.jpg", tier: "Gold" },
+  { name: "Digital Solutions Inc", logo: "/digital-solutions-logo-gold.jpg", tier: "Gold" },
+  { name: "CloudTech Systems", logo: "/cloud-tech-logo-gold.jpg", tier: "Gold" },
+  { name: "DevTools Pro", logo: "/dev-tools-logo-silver.jpg", tier: "Silver" },
+  { name: "AI Innovations", logo: "/ai-innovations-logo-silver.jpg", tier: "Silver" },
+  { name: "CyberSec Solutions", logo: "/cybersec-logo-silver.jpg", tier: "Silver" },
+  { name: "DataFlow Systems", logo: "/dataflow-logo-silver.jpg", tier: "Silver" },
+  { name: "CodeCraft", logo: "/codecraft-logo-bronze.jpg", tier: "Bronze" },
+  { name: "WebDev Studio", logo: "/webdev-studio-logo-bronze.jpg", tier: "Bronze" },
+  { name: "MobileTech", logo: "/mobiletech-logo-bronze.jpg", tier: "Bronze" },
+  { name: "AppForge", logo: "/appforge-logo-bronze.jpg", tier: "Bronze" },
+  { name: "TechStart", logo: "/placeholder.svg?height=40&width=120", tier: "Bronze" },
 ]
 
 export function SponsorsCarousel() {
@@ -33,7 +35,7 @@ export function SponsorsCarousel() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section className="py-16 lg:py-24 bg-muted/30">
+    <section id="sponsors-section" className="py-16 lg:py-24 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -54,7 +56,7 @@ export function SponsorsCarousel() {
             align: "start",
             loop: true,
           }}
-          className="w-full max-w-6xl mx-auto"
+          className="w-full max-w-6xl mx-auto overflow-hidden"
         >
           <CarouselContent>
             {sponsors.map((sponsor, index) => (
@@ -93,14 +95,9 @@ export function SponsorsCarousel() {
           className="text-center mt-16"
         >
           <p className="text-muted-foreground mb-4">Interested in sponsoring the conference?</p>
-          <motion.a
-            href="/sponsors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors duration-200"
-          >
-            Become a Sponsor
-          </motion.a>
+          <Button asChild size="lg">
+            <Link href="/sponsors">Become a Sponsor</Link>
+          </Button>
         </motion.div>
       </div>
     </section>

@@ -47,13 +47,13 @@ export function HeroCountdown() {
 
   return (
     <div className="w-full max-w-md mx-auto text-center">
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-2 sm:gap-4">
         {timeUnits.map((unit) => (
-          <div key={unit.label} className="p-3">
-            <div className="text-5xl font-bold text-primary">
+          <div key={unit.label} className="p-2 sm:p-3">
+            <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
               {unit.value.toString().padStart(2, "0")}
             </div>
-            <div className="text-lg text-primary/80 uppercase">
+            <div className="text-xs sm:text-sm md:text-lg text-primary/80 uppercase">
               {unit.label}
             </div>
           </div>

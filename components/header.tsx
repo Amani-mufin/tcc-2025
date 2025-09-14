@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
@@ -7,17 +7,20 @@ import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { Menu, X, Calendar, Users } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll"
 
 const navigation = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Speakers", href: "/speakers" },
-  { name: "Schedule", href: "/schedule" },
+  { name: "Home", href: "/#" },
+  { name: "About", href: "/#about-section" },
+  { name: "Speakers", href: "/#speakers-section" },
+  { name: "Sponsors", href: "/#sponsors-section" },
+  { name: "Team", href: "/#team-section" },
 ]
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const handleScrollTo = useSmoothScroll()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +29,11 @@ export function Header() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    handleScrollTo(e)
+    setIsMobileMenuOpen(false)
+  }
 
   return (
     <motion.header
@@ -43,10 +51,10 @@ export function Header() {
           <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
             <Link href="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">CT</span>
+                <span className="text-primary-foreground font-bold text-sm">TCC</span>
               </div>
               <div className="hidden sm:block">
-                <span className="font-serif font-bold text-lg text-foreground">TCC 2025</span>
+                <span className="font-serif font-bold text-lg text-foreground">Tech Conference Calabar 2025</span>
               </div>
             </Link>
           </motion.div>
@@ -62,6 +70,7 @@ export function Header() {
               >
                 <Link
                   href={item.href}
+                  onClick={handleLinkClick}
                   className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 relative group"
                 >
                   {item.name}
@@ -79,7 +88,7 @@ export function Header() {
             <ThemeToggle />
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button variant="outline" size="sm" asChild>
-                <Link href="/register">
+                <Link href="https://docs.google.com/forms/d/e/1FAIpQLSf7RI1RuFzoTmN-Imavk_mw9l9xRNPZ5fiJcnZWQjdyrHgPFw/viewform" target="_blank">
                   <Users className="w-4 h-4 mr-2" />
                   Volunteer
                 </Link>
@@ -87,7 +96,7 @@ export function Header() {
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button size="sm" asChild>
-                <Link href="/register">
+                <Link href="https://luma.com/5t04wsl8?tk=L47on9" target="_blank">
                   <Calendar className="w-4 h-4 mr-2" />
                   Register Now
                 </Link>
@@ -126,8 +135,8 @@ export function Header() {
                   >
                     <Link
                       href={item.href}
+                      onClick={handleLinkClick}
                       className="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary hover:bg-muted rounded-md transition-colors duration-200"
-                      onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {item.name}
                     </Link>
@@ -135,13 +144,13 @@ export function Header() {
                 ))}
                 <div className="pt-4 pb-2 space-y-2">
                   <Button variant="outline" className="w-full bg-transparent" asChild>
-                    <Link href="/register">
+                    <Link href="https://docs.google.com/forms/d/e/1FAIpQLSf7RI1RuFzoTmN-Imavk_mw9l9xRNPZ5fiJcnZWQjdyrHgPFw/viewform" target="_blank">
                       <Users className="w-4 h-4 mr-2" />
                       Become a Volunteer
                     </Link>
                   </Button>
                   <Button className="w-full" asChild>
-                    <Link href="/register">
+                    <Link href="https://luma.com/5t04wsl8?tk=L47on9" target="_blank">
                       <Calendar className="w-4 h-4 mr-2" />
                       Register Now
                     </Link>

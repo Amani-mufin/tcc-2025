@@ -17,7 +17,7 @@ const registrationTypes = [
       "Certificate of participation",
     ],
     cta: "Register as Attendee",
-    type: "attendee",
+    href: "https://luma.com/5t04wsl8?tk=L47on9",
     popular: true,
   },
   {
@@ -31,7 +31,7 @@ const registrationTypes = [
       "Travel and accommodation support (if applicable)",
     ],
     cta: "Apply as Speaker",
-    type: "speaker",
+    href: "https://docs.google.com/forms/d/e/1FAIpQLSf7RI1RuFzoTmN-Imavk_mw9l9xRNPZ5fiJcnZWQjdyrHgPFw/viewform",
     popular: false,
   },
   {
@@ -45,7 +45,7 @@ const registrationTypes = [
       "Partnership opportunities with startups and investors",
     ],
     cta: "Partner as Sponsor",
-    type: "sponsor",
+    href: "#",
     popular: false,
   },
 ]
@@ -90,7 +90,7 @@ export function RegistrationCards() {
               </CardContent>
               <CardFooter>
                 <Button asChild className="w-full">
-                  <Link href={`/register?type=${type.type}`}>{type.cta}</Link>
+                  <Link href={type.href} target="_blank">{type.cta}</Link>
                 </Button>
               </CardFooter>
             </Card>

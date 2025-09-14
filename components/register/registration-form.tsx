@@ -71,6 +71,7 @@ export function RegistrationForm() {
     const typeParam = searchParams.get("type") as RegistrationData["type"]
     if (typeParam && ["attendee", "speaker", "sponsor"].includes(typeParam)) {
       setFormData((prev) => ({ ...prev, type: typeParam }))
+      setCurrentStep(2) // Skip to step 2 if type is in URL
     }
   }, [searchParams])
 
@@ -118,8 +119,12 @@ export function RegistrationForm() {
       case 5:
         return <ConfirmationStep data={formData} onPrev={prevStep} onSubmit={handleSubmit} isSubmitting={isSubmitting}/>
       default:
-        return null
+        return <div /> // Render empty div for step 1 when type is pre-selected
     }
+  }
+
+  if (currentStep === 1 && formData.type) {
+    return null; // Don't render anything for step 1 if type is already set from URL
   }
 
   return (

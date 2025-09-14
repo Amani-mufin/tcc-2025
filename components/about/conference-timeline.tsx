@@ -8,45 +8,52 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal"
 
 const timelineEvents = [
   {
-    year: "2020",
-    title: "The Vision",
-    description: "Initial concept for a major tech conference in Cross River State was born.",
-    icon: Building,
-    status: "completed",
-  },
-  {
     year: "2021",
-    title: "Community Building",
-    description: "Started building the local tech community through meetups and workshops.",
+    title: "The Beginning",
+    description: "Started with the first 5 members on a WhatsApp group.",
     icon: Users,
     status: "completed",
   },
   {
     year: "2022",
-    title: "First Gathering",
-    description: "Organized the first small-scale tech meetup with 50 local developers.",
+    title: "First Physical Hangout",
+    description: "Held our first physical hangout and opened our official social media pages.",
     icon: Mic,
     status: "completed",
   },
   {
-    year: "2023",
-    title: "Growing Network",
-    description: "Expanded to quarterly events with 200+ attendees and regional speakers.",
+    year: "2022",
+    title: "Reached 200 Members",
+    description: "Community grows to 200 members and hosted our second physical hangout.",
     icon: Users,
     status: "completed",
   },
   {
+    year: "2023",
+    title: "Third Physical Hangout",
+    description: "Organized the third physical hangout.",
+    icon: Mic,
+    status: "completed",
+  },
+    {
     year: "2024",
-    title: "Planning Phase",
-    description: "Secured venue, sponsors, and began planning for the inaugural conference.",
-    icon: Calendar,
+    title: "Fifth Physical Hangout",
+    description: "Held the fifth physical hangout.",
+    icon: Mic,
     status: "completed",
   },
   {
     year: "2025",
-    title: "Calabar Tech Conference",
-    description: "The premier tech conference launches with 1000+ attendees and international speakers.",
-    icon: Mic,
+    title: "First School Storm",
+    description: "Launched our first School Storm (Tech in School Initiative).",
+    icon: Building,
+    status: "completed",
+  },
+    {
+    year: "2025",
+    title: "1000+ Members",
+    description: "Crossed 1,000+ registered members in our growing community.",
+    icon: Users,
     status: "upcoming",
   },
 ]
@@ -61,8 +68,7 @@ export function ConferenceTimeline() {
               Our <span className="text-primary">Journey</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              From a simple idea to the premier tech conference in Cross River State. Here's how we've built this
-              community over the years.
+              From a small WhatsApp group to 1,000+ members, Calabar Tech Community has become a thriving ecosystem for innovation, learning, and collaboration.
             </p>
           </div>
         </ScrollReveal>

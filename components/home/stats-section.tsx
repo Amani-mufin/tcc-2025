@@ -86,7 +86,7 @@ export function StatsSection() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl lg:text-4xl font-serif font-bold text-foreground mb-4">Conference at a Glance</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
             Join thousands of tech enthusiasts, innovators, and industry leaders for two days of inspiration and
             networking.
           </p>
@@ -101,15 +101,15 @@ export function StatsSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center group"
+                className="flex flex-col items-center text-center group"
               >
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl mb-4 group-hover:bg-primary/20 transition-colors duration-300">
                   <Icon className="w-8 h-8 text-primary" />
                 </div>
-                <div className="text-3xl lg:text-4xl font-serif font-bold text-foreground mb-2">
+                <div className="text-3xl sm:text-4xl font-serif font-bold text-foreground mb-2">
                   <AnimatedCounter target={stat.number} suffix={stat.suffix} />
                 </div>
-                <div className="text-sm lg:text-base text-muted-foreground font-medium">{stat.label}</div>
+                <div className="text-sm sm:text-base text-muted-foreground font-medium">{stat.label}</div>
               </motion.div>
             )
           })}
