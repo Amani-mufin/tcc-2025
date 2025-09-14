@@ -6,7 +6,6 @@ import { WhyCalabar } from "@/components/about/why-calabar";
 import { ConferenceTimeline } from "@/components/about/conference-timeline";
 import { AttendeeMetrics } from "@/components/about/attendee-metrics";
 import { WhyAttend } from "@/components/about/why-attend";
-import { Faq } from "@/components/about/faq";
 
 export const metadata = {
   title: "About | Calabar Tech Conference 2025",
@@ -25,7 +24,6 @@ export default function AboutPage() {
         <WhyAttend />
         <AttendeeMetrics />
         <ConferenceTimeline />
-        <Faq />
       </main>
       <Footer />
     </div>
